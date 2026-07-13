@@ -10,3 +10,8 @@ This log is maintained as daily evidence of steady project progress.
 - Created initial repository structure for ingestion, batch processing, speed processing, serving, and benchmarks.
 - Added starter architecture and implementation files.
 
+## 2026-07-13
+
+- Added a small local script to save sample Wikimedia events as JSON-lines.
+- Added local test notes for checking the live stream before using AWS.
+- The local sample will help test the speed layer and batch layer without spending AWS lab time.
