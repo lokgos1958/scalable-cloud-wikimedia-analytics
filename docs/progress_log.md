@@ -15,3 +15,10 @@ This log is maintained as daily evidence of steady project progress.
 - Added a small local script to save sample Wikimedia events as JSON-lines.
 - Added local test notes for checking the live stream before using AWS.
 - The local sample will help test the speed layer and batch layer without spending AWS lab time.
+
+## 2026-07-15
+
+- Added AWS setup notes for Learner Lab.
+- Added `.env.example` to show which temporary AWS values are needed locally.
+- Added a simple setup script for creating the first Kinesis stream and S3 bucket.
+- Kept the setup small so it can be tested safely before moving to Spark and benchmarking.
