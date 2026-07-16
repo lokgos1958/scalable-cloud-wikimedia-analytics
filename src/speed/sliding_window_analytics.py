@@ -25,8 +25,16 @@ def top_titles(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
     return counts.most_common(limit)
 
 
-def process_json_lines(input_path: str, window_seconds: int, top_n: int) -> None:
+def run_window_replay(
+    input_path: str,
+    window_seconds: int,
+    top_n: int,
+    report_every: int = 25,
+    emit_progress: bool = True,
+) -> dict:
     window: Deque[WindowEvent] = deque()
+    processed = 0
+    snapshots = 0
 
     with open(input_path, "r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, 1):
@@ -39,18 +47,38 @@ def process_json_lines(input_path: str, window_seconds: int, top_n: int) -> None
 
             window.append(WindowEvent(now, wiki, title))
             expire_old_events(window, window_seconds, now)
+            processed += 1
 
-            if line_number % 25 == 0:
-                print(
-                    json.dumps(
-                        {
-                            "line": line_number,
-                            "window_seconds": window_seconds,
-                            "events_in_window": len(window),
-                            "top_titles": top_titles(window, top_n),
-                        }
-                    )
-                )
+            if report_every > 0 and line_number % report_every == 0:
+                snapshots += 1
+                snapshot = {
+                    "line": line_number,
+                    "window_seconds": window_seconds,
+                    "events_in_window": len(window),
+                    "top_titles": top_titles(window, top_n),
+                }
+                if emit_progress:
+                    print(json.dumps(snapshot))
+
+    return {
+        "processed_events": processed,
+        "snapshots_emitted": snapshots,
+        "final_window_size": len(window),
+        "final_top_titles": top_titles(window, top_n),
+    }
+
+
+def process_json_lines(input_path: str, window_seconds: int, top_n: int) -> None:
+    summary = run_window_replay(input_path, window_seconds, top_n)
+    if summary["processed_events"] == 0:
+        print(
+            json.dumps(
+                {
+                    "processed_events": 0,
+                    "message": "no valid events were found in the input file",
+                }
+            )
+        )
 
 
 def main() -> None:
@@ -64,4 +92,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
