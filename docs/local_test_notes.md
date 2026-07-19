@@ -24,6 +24,8 @@ python src/speed/sliding_window_analytics.py --input data/raw/wikimedia_sample.j
 
 Expected output is a few JSON lines showing the current window size and the top edited pages in that sample.
 
+It now also shows the busiest wiki projects in the same active window. This is a simple local version of the language/project count that will later be useful in the speed layer.
+
 ## Run A Small Local Benchmark
 
 ```powershell
@@ -36,6 +38,7 @@ This replays the same sample file a few times and prints:
 - total replay time
 - events per second
 - average milliseconds per event
+- final top wiki counts in the active window
 
 These numbers are only local baseline measurements, but they are useful later when comparing local replay against AWS-based runs.
 

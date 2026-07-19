@@ -25,6 +25,11 @@ def top_titles(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
     return counts.most_common(limit)
 
 
+def top_wikis(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
+    counts = Counter(event.wiki for event in events)
+    return counts.most_common(limit)
+
+
 def run_window_replay(
     input_path: str,
     window_seconds: int,
@@ -56,6 +61,7 @@ def run_window_replay(
                     "window_seconds": window_seconds,
                     "events_in_window": len(window),
                     "top_titles": top_titles(window, top_n),
+                    "top_wikis": top_wikis(window, top_n),
                 }
                 if emit_progress:
                     print(json.dumps(snapshot))
@@ -65,6 +71,7 @@ def run_window_replay(
         "snapshots_emitted": snapshots,
         "final_window_size": len(window),
         "final_top_titles": top_titles(window, top_n),
+        "final_top_wikis": top_wikis(window, top_n),
     }
 
 

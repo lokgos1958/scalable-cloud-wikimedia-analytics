@@ -31,3 +31,10 @@ This log is maintained as daily evidence of steady project progress.
 - Added a small unittest-based replay check for the speed-layer logic.
 - Verified that valid events are counted, incomplete records are ignored, and top pages are returned correctly.
 - Updated the local test notes with the replay-check command so the local validation step is easy to repeat.
+
+## 2026-07-19
+
+- Extended the local speed-layer replay summary to report top wiki/project counts in the active window.
+- Updated the local benchmark output so each run now includes the final wiki-count snapshot.
+- Expanded the replay test to check the new wiki-count summary for valid and empty inputs.
+- Updated the local test notes to explain how this small step supports the later speed-layer language/project metric.

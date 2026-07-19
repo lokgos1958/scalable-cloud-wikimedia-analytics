@@ -43,6 +43,7 @@ class RunWindowReplayTests(unittest.TestCase):
             summary["final_top_titles"],
             [("enwiki:Python_(programming_language)", 2), ("dewiki:Berlin", 1)],
         )
+        self.assertEqual(summary["final_top_wikis"], [("enwiki", 2), ("dewiki", 1)])
 
     def test_replay_handles_files_without_valid_events(self):
         input_path = self.write_sample_file(
@@ -64,6 +65,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["snapshots_emitted"], 0)
         self.assertEqual(summary["final_window_size"], 0)
         self.assertEqual(summary["final_top_titles"], [])
+        self.assertEqual(summary["final_top_wikis"], [])
 
 
 if __name__ == "__main__":

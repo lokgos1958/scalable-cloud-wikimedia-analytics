@@ -31,6 +31,7 @@ def benchmark_speed_layer(input_path: str, window_seconds: int, top_n: int, runs
                 "events_per_second": round(events_per_second, 2),
                 "average_ms_per_event": round(average_ms_per_event, 4),
                 "final_window_size": summary["final_window_size"],
+                "final_top_wikis": summary["final_top_wikis"],
             }
         )
 
