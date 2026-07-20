@@ -42,6 +42,23 @@ This replays the same sample file a few times and prints:
 
 These numbers are only local baseline measurements, but they are useful later when comparing local replay against AWS-based runs.
 
+## Run The Batch Layer Locally
+
+If PySpark is installed, the same sample file can also be used to test the batch layer on a very small dataset:
+
+```powershell
+python src/batch/spark_batch_views.py --input data/raw/wikimedia_sample.jsonl --output data/batch_views
+```
+
+This should create small output folders for:
+
+- top page counts
+- daily wiki/project totals
+- hourly wiki/project totals
+- bot vs non-bot counts
+
+This is still only a local smoke test, but it helps confirm that the batch script now produces both daily and hourly views before moving the same job to S3 input in AWS.
+
 ## Run A Simple Replay Check
 
 ```powershell

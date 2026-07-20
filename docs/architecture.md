@@ -22,6 +22,7 @@ The batch layer reads all accumulated events and computes complete historical ag
 
 - top edited pages
 - top languages/projects
+- hourly edit volume by wiki/project
 - bot vs human edit counts
 - event volume per time interval
 
@@ -41,4 +42,3 @@ The serving layer combines:
 - fresh recent results from the speed view
 
 This gives both correctness and low latency, which is the purpose of the Lambda architecture.
-

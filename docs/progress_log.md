@@ -44,3 +44,5 @@ This log is maintained as daily evidence of steady project progress.
 - Improved the serving-layer merge so each merged result now keeps the wiki, page title, batch count, speed count, and combined count.
 - Added a small unittest file for the serving-layer merge to check overlapping pages and the result limit.
 - Updated the local test notes so the lightweight unittest command now also covers the serving view logic.
+- Extended the PySpark batch layer to also write an `hourly_volume` view grouped by hour and wiki/project.
+- Updated the README, architecture notes, and local test notes to show the new hourly batch output and a simple local Spark smoke-test command.

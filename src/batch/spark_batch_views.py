@@ -3,7 +3,7 @@
 import argparse
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, count, desc, from_unixtime, to_date
+from pyspark.sql.functions import col, count, date_format, desc, from_unixtime, to_date
 
 
 def build_batch_views(input_path: str, output_path: str) -> None:
@@ -29,6 +29,13 @@ def build_batch_views(input_path: str, output_path: str) -> None:
         .orderBy("event_date", desc("edit_count"))
     )
 
+    hourly_volume = (
+        clean.withColumn("event_hour", date_format(from_unixtime(col("timestamp")), "yyyy-MM-dd HH:00:00"))
+        .groupBy("event_hour", "wiki")
+        .agg(count("*").alias("edit_count"))
+        .orderBy("event_hour", desc("edit_count"))
+    )
+
     bot_summary = (
         clean.groupBy("bot")
         .agg(count("*").alias("edit_count"))
@@ -37,6 +44,7 @@ def build_batch_views(input_path: str, output_path: str) -> None:
 
     top_pages.write.mode("overwrite").json(f"{output_path}/top_pages")
     language_volume.write.mode("overwrite").json(f"{output_path}/language_volume")
+    hourly_volume.write.mode("overwrite").json(f"{output_path}/hourly_volume")
     bot_summary.write.mode("overwrite").json(f"{output_path}/bot_summary")
 
     spark.stop()
@@ -52,4 +60,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

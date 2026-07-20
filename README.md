@@ -43,3 +43,11 @@ Day 1 project setup is complete:
 - Demo video showing live ingestion, batch layer, speed layer, serving view, and benchmark results.
 - Benchmark graphs for throughput, latency, and speedup.
 
+## Current Batch Outputs
+
+The batch script currently writes four small JSON output folders:
+
+- `top_pages` for overall page edit counts
+- `language_volume` for daily wiki/project totals
+- `hourly_volume` for hourly wiki/project totals
+- `bot_summary` for bot vs non-bot counts
