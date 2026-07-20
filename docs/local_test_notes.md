@@ -56,6 +56,8 @@ This checks that the replay logic:
 
 It is a lightweight local check, but it helps show that the speed-layer replay code still behaves as expected after small edits.
 
+The same test command now also checks that the serving-layer merge keeps batch counts, speed counts, and combined counts aligned for the same page.
+
 ## Why This Step Matters
 
 This local test is not the final cloud pipeline. It is only a first check before connecting the same stream to Kinesis and S3 in AWS Academy Learner Lab.

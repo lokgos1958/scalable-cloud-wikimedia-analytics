@@ -38,3 +38,9 @@ This log is maintained as daily evidence of steady project progress.
 - Updated the local benchmark output so each run now includes the final wiki-count snapshot.
 - Expanded the replay test to check the new wiki-count summary for valid and empty inputs.
 - Updated the local test notes to explain how this small step supports the later speed-layer language/project metric.
+
+## 2026-07-20
+
+- Improved the serving-layer merge so each merged result now keeps the wiki, page title, batch count, speed count, and combined count.
+- Added a small unittest file for the serving-layer merge to check overlapping pages and the result limit.
+- Updated the local test notes so the lightweight unittest command now also covers the serving view logic.
