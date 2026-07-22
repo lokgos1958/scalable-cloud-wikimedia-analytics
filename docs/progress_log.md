@@ -53,3 +53,6 @@ This log is maintained as daily evidence of steady project progress.
 - Updated the local benchmark output so each run also reports the final bot and human counts beside the top wiki counts.
 - Expanded the replay unittest to check the new bot-count summary for both valid and empty sample inputs.
 - Updated the README, architecture notes, and local test notes so this small speed-layer metric is documented for the demo and report.
+- Created the first AWS resources in Learner Lab using the console: one Kinesis data stream and one S3 bucket.
+- Confirmed the Kinesis stream reached Active status and kept S3 public access blocked.
+- Updated the AWS notes with the actual resource names for the next live ingestion test.

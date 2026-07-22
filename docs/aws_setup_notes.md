@@ -34,9 +34,24 @@ Planned names:
 
 ```text
 Kinesis stream: wikimedia-recentchange-stream
-S3 bucket: wikimedia-analytics-lokesh
+S3 bucket: wikimedia-analytics-lokesh-24238856
 Region: us-east-1
 ```
 
 If a bucket name is already taken, add a short suffix such as student ID or date.
 
+## Created In AWS
+
+Created on 2026-07-22 in AWS Academy Learner Lab:
+
+```text
+Kinesis stream: wikimedia-recentchange-stream
+Status: Active
+Capacity mode: On-demand
+
+S3 bucket: wikimedia-analytics-lokesh-24238856
+Region: us-east-1
+Public access: blocked
+```
+
+The next AWS step is to send a small number of Wikimedia events into the Kinesis stream and save raw output files into S3.
