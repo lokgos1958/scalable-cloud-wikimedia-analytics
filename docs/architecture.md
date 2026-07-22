@@ -33,6 +33,7 @@ The speed layer updates recent aggregates over sliding windows:
 - top pages in the last 1 minute
 - top pages in the last 5 minutes
 - event count per language in the current window
+- event type mix in the current window
 - bot vs human edit counts in the current window
 
 ## Serving Merge

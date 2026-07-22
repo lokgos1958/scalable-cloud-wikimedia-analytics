@@ -56,3 +56,7 @@ This log is maintained as daily evidence of steady project progress.
 - Created the first AWS resources in Learner Lab using the console: one Kinesis data stream and one S3 bucket.
 - Confirmed the Kinesis stream reached Active status and kept S3 public access blocked.
 - Updated the AWS notes with the actual resource names for the next live ingestion test.
+- Extended the local speed-layer replay so each active window now also reports the busiest Wikimedia event types.
+- Updated the local benchmark output so each run includes the final event-type mix beside the wiki and bot summaries.
+- Expanded the replay unittest to check the new event-type summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.

@@ -14,6 +14,7 @@ class WindowEvent:
     wiki: str
     title: str
     bot: bool
+    event_type: str
 
 
 def expire_old_events(events: Deque[WindowEvent], window_seconds: int, now: float) -> None:
@@ -28,6 +29,11 @@ def top_titles(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
 
 def top_wikis(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
     counts = Counter(event.wiki for event in events)
+    return counts.most_common(limit)
+
+
+def top_event_types(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
+    counts = Counter(event.event_type for event in events)
     return counts.most_common(limit)
 
 
@@ -59,6 +65,7 @@ def run_window_replay(
             "events_in_window": len(window),
             "top_titles": top_titles(window, top_n),
             "top_wikis": top_wikis(window, top_n),
+            "top_event_types": top_event_types(window, top_n),
             "bot_breakdown": bot_breakdown(window),
         }
         if emit_progress:
@@ -72,10 +79,11 @@ def run_window_replay(
             now = time.time()
             title = record.get("title")
             wiki = record.get("wiki")
-            if not title or not wiki:
+            event_type = record.get("type")
+            if not title or not wiki or not event_type:
                 continue
 
-            window.append(WindowEvent(now, wiki, title, bool(record.get("bot"))))
+            window.append(WindowEvent(now, wiki, title, bool(record.get("bot")), event_type))
             expire_old_events(window, window_seconds, now)
             processed += 1
 
@@ -91,6 +99,7 @@ def run_window_replay(
         "final_window_size": len(window),
         "final_top_titles": top_titles(window, top_n),
         "final_top_wikis": top_wikis(window, top_n),
+        "final_top_event_types": top_event_types(window, top_n),
         "final_bot_breakdown": bot_breakdown(window),
     }
 

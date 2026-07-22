@@ -26,6 +26,8 @@ Expected output is a few JSON lines showing the current window size and the top 
 
 It now also shows the busiest wiki projects in the same active window. This is a simple local version of the language/project count that will later be useful in the speed layer.
 
+The replay output also includes the busiest event types in the same active window, such as normal edits versus new-page events. This is a small but useful speed-layer check because it shows whether short windows are dominated by one kind of change.
+
 The replay output now also includes a small bot vs human split for the active window. That makes it easier to compare short-term automation activity against normal editor activity before the same idea is moved into the cloud pipeline.
 
 ## Run A Small Local Benchmark
@@ -41,6 +43,7 @@ This replays the same sample file a few times and prints:
 - events per second
 - average milliseconds per event
 - final top wiki counts in the active window
+- final top event-type counts in the active window
 - final bot vs human counts in the active window
 
 These numbers are only local baseline measurements, but they are useful later when comparing local replay against AWS-based runs.
@@ -77,7 +80,7 @@ This checks that the replay logic:
 It is a lightweight local check, but it helps show that the speed-layer replay code still behaves as expected after small edits.
 
 The same test command now also checks that the serving-layer merge keeps batch counts, speed counts, and combined counts aligned for the same page.
-It also checks that the speed-layer replay keeps the bot vs human counts correct for a small sample window.
+It also checks that the speed-layer replay keeps both the event-type counts and the bot vs human counts correct for a small sample window.
 
 ## Why This Step Matters
 

@@ -21,9 +21,9 @@ class RunWindowReplayTests(unittest.TestCase):
     def test_replay_counts_valid_events_and_top_titles(self):
         input_path = self.write_sample_file(
             [
-                {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": False},
-                {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": True},
-                {"wiki": "dewiki", "title": "Berlin", "bot": False},
+                {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": False, "type": "edit"},
+                {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": True, "type": "edit"},
+                {"wiki": "dewiki", "title": "Berlin", "bot": False, "type": "new"},
                 {"wiki": "enwiki"},
             ]
         )
@@ -44,6 +44,7 @@ class RunWindowReplayTests(unittest.TestCase):
             [("enwiki:Python_(programming_language)", 2), ("dewiki:Berlin", 1)],
         )
         self.assertEqual(summary["final_top_wikis"], [("enwiki", 2), ("dewiki", 1)])
+        self.assertEqual(summary["final_top_event_types"], [("edit", 2), ("new", 1)])
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 1, "human_events": 2})
 
     def test_replay_handles_files_without_valid_events(self):
@@ -67,6 +68,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["final_window_size"], 0)
         self.assertEqual(summary["final_top_titles"], [])
         self.assertEqual(summary["final_top_wikis"], [])
+        self.assertEqual(summary["final_top_event_types"], [])
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 0, "human_events": 0})
 
 
