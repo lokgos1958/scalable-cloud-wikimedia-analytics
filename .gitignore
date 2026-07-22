@@ -2,9 +2,9 @@
 __pycache__/
 *.pyc
 .env
+.env.txt
 .aws/
 data/raw/
 data/processed/
 outputs/
 *.log
-
