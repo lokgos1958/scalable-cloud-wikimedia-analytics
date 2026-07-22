@@ -51,3 +51,11 @@ The batch script currently writes four small JSON output folders:
 - `language_volume` for daily wiki/project totals
 - `hourly_volume` for hourly wiki/project totals
 - `bot_summary` for bot vs non-bot counts
+
+## Current Speed Outputs
+
+The local speed-layer replay currently reports:
+
+- top edited pages in the active window
+- top wiki/project counts in the active window
+- bot vs human event counts in the active window

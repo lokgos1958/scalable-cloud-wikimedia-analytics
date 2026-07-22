@@ -46,3 +46,10 @@ This log is maintained as daily evidence of steady project progress.
 - Updated the local test notes so the lightweight unittest command now also covers the serving view logic.
 - Extended the PySpark batch layer to also write an `hourly_volume` view grouped by hour and wiki/project.
 - Updated the README, architecture notes, and local test notes to show the new hourly batch output and a simple local Spark smoke-test command.
+
+## 2026-07-22
+
+- Extended the local speed-layer replay so each active window now keeps a simple bot vs human event split.
+- Updated the local benchmark output so each run also reports the final bot and human counts beside the top wiki counts.
+- Expanded the replay unittest to check the new bot-count summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this small speed-layer metric is documented for the demo and report.
