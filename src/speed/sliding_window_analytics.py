@@ -50,8 +50,24 @@ def run_window_replay(
     processed = 0
     snapshots = 0
 
+    def emit_snapshot(line_number: int) -> None:
+        nonlocal snapshots
+        snapshots += 1
+        snapshot = {
+            "line": line_number,
+            "window_seconds": window_seconds,
+            "events_in_window": len(window),
+            "top_titles": top_titles(window, top_n),
+            "top_wikis": top_wikis(window, top_n),
+            "bot_breakdown": bot_breakdown(window),
+        }
+        if emit_progress:
+            print(json.dumps(snapshot))
+
     with open(input_path, "r", encoding="utf-8") as handle:
+        last_line_number = 0
         for line_number, line in enumerate(handle, 1):
+            last_line_number = line_number
             record = json.loads(line)
             now = time.time()
             title = record.get("title")
@@ -63,18 +79,11 @@ def run_window_replay(
             expire_old_events(window, window_seconds, now)
             processed += 1
 
-            if report_every > 0 and line_number % report_every == 0:
-                snapshots += 1
-                snapshot = {
-                    "line": line_number,
-                    "window_seconds": window_seconds,
-                    "events_in_window": len(window),
-                    "top_titles": top_titles(window, top_n),
-                    "top_wikis": top_wikis(window, top_n),
-                    "bot_breakdown": bot_breakdown(window),
-                }
-                if emit_progress:
-                    print(json.dumps(snapshot))
+            if report_every > 0 and processed % report_every == 0:
+                emit_snapshot(line_number)
+
+    if processed > 0 and report_every > 0 and processed % report_every != 0:
+        emit_snapshot(last_line_number)
 
     return {
         "processed_events": processed,
