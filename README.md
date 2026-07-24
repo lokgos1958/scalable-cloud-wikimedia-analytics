@@ -60,3 +60,4 @@ The local speed-layer replay currently reports:
 - top wiki/project counts in the active window
 - top event types in the active window
 - bot vs human event counts in the active window
+- anonymous vs logged-in edit counts in the active window

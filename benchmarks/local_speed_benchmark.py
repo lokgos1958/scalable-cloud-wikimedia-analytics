@@ -34,6 +34,7 @@ def benchmark_speed_layer(input_path: str, window_seconds: int, top_n: int, runs
                 "final_top_wikis": summary["final_top_wikis"],
                 "final_top_event_types": summary["final_top_event_types"],
                 "final_bot_breakdown": summary["final_bot_breakdown"],
+                "final_editor_breakdown": summary["final_editor_breakdown"],
             }
         )
 

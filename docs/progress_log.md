@@ -60,3 +60,10 @@ This log is maintained as daily evidence of steady project progress.
 - Updated the local benchmark output so each run includes the final event-type mix beside the wiki and bot summaries.
 - Expanded the replay unittest to check the new event-type summary for both valid and empty sample inputs.
 - Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
+
+## 2026-07-24
+
+- Extended the local speed-layer replay so each active window now also reports anonymous vs logged-in edit counts.
+- Updated the local benchmark output so each run includes the final anonymous/editor split beside the wiki, event-type, and bot summaries.
+- Expanded the replay unittest to check the new anonymous-editor summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this small speed-layer metric is documented for the demo and report.

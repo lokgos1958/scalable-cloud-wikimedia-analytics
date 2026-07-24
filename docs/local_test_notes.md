@@ -30,6 +30,8 @@ The replay output also includes the busiest event types in the same active windo
 
 The replay output now also includes a small bot vs human split for the active window. That makes it easier to compare short-term automation activity against normal editor activity before the same idea is moved into the cloud pipeline.
 
+The replay output now also includes a small anonymous vs logged-in split for the active window. This is useful because Wikimedia traffic often changes when IP edits suddenly increase, so it gives one more simple real-time behaviour to discuss in the demo.
+
 ## Run A Small Local Benchmark
 
 ```powershell
@@ -45,6 +47,7 @@ This replays the same sample file a few times and prints:
 - final top wiki counts in the active window
 - final top event-type counts in the active window
 - final bot vs human counts in the active window
+- final anonymous vs logged-in counts in the active window
 
 These numbers are only local baseline measurements, but they are useful later when comparing local replay against AWS-based runs.
 
@@ -80,7 +83,7 @@ This checks that the replay logic:
 It is a lightweight local check, but it helps show that the speed-layer replay code still behaves as expected after small edits.
 
 The same test command now also checks that the serving-layer merge keeps batch counts, speed counts, and combined counts aligned for the same page.
-It also checks that the speed-layer replay keeps both the event-type counts and the bot vs human counts correct for a small sample window.
+It also checks that the speed-layer replay keeps the event-type counts, the bot vs human counts, and the anonymous vs logged-in counts correct for a small sample window.
 
 ## Why This Step Matters
 

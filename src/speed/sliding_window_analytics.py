@@ -14,6 +14,7 @@ class WindowEvent:
     wiki: str
     title: str
     bot: bool
+    anonymous: bool
     event_type: str
 
 
@@ -45,6 +46,14 @@ def bot_breakdown(events: Deque[WindowEvent]) -> dict[str, int]:
     }
 
 
+def editor_breakdown(events: Deque[WindowEvent]) -> dict[str, int]:
+    anonymous_events = sum(1 for event in events if event.anonymous)
+    return {
+        "anonymous_events": anonymous_events,
+        "logged_in_events": len(events) - anonymous_events,
+    }
+
+
 def run_window_replay(
     input_path: str,
     window_seconds: int,
@@ -67,6 +76,7 @@ def run_window_replay(
             "top_wikis": top_wikis(window, top_n),
             "top_event_types": top_event_types(window, top_n),
             "bot_breakdown": bot_breakdown(window),
+            "editor_breakdown": editor_breakdown(window),
         }
         if emit_progress:
             print(json.dumps(snapshot))
@@ -83,7 +93,16 @@ def run_window_replay(
             if not title or not wiki or not event_type:
                 continue
 
-            window.append(WindowEvent(now, wiki, title, bool(record.get("bot")), event_type))
+            window.append(
+                WindowEvent(
+                    now,
+                    wiki,
+                    title,
+                    bool(record.get("bot")),
+                    bool(record.get("anon")),
+                    event_type,
+                )
+            )
             expire_old_events(window, window_seconds, now)
             processed += 1
 
@@ -101,6 +120,7 @@ def run_window_replay(
         "final_top_wikis": top_wikis(window, top_n),
         "final_top_event_types": top_event_types(window, top_n),
         "final_bot_breakdown": bot_breakdown(window),
+        "final_editor_breakdown": editor_breakdown(window),
     }
 
 
