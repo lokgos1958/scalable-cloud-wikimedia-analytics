@@ -88,3 +88,6 @@ This log is maintained as daily evidence of steady project progress.
 - Added the `namespace` field to the local sample saver and Kinesis producer payload so the same metric is available in saved samples and AWS ingestion records.
 - Expanded the replay unittest to check the new namespace summary for both valid and empty sample inputs.
 - Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
+- Verified the AWS resources again through CloudShell.
+- Sent one demo record into Kinesis and uploaded one demo JSON-lines file into the S3 raw folder.
+- Added CloudShell proof notes and updated the submission checklist with the honest AWS status.

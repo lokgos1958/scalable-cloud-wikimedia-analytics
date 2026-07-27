@@ -40,6 +40,8 @@ The first AWS resources created in Learner Lab were:
 
 The Kinesis stream was configured with on-demand capacity. S3 public access was kept blocked.
 
+A CloudShell check confirmed that the stream and bucket were available. One small demo record was sent into Kinesis, and one JSON-lines file was uploaded to the S3 raw folder as proof that the serving storage path works.
+
 ## 6. Performance Plan
 
 The planned measurements are:
@@ -65,4 +67,3 @@ The project demonstrates the main parts of a scalable real-time analytics system
 - AWS Kinesis Data Streams documentation
 - AWS S3 documentation
 - Apache Spark documentation
-
