@@ -75,3 +75,8 @@ This log is maintained as daily evidence of steady project progress.
 - Fixed the local sample saver and Kinesis producer payload so both `anon` and `minor` flags are preserved for later analytics.
 - Expanded the replay unittest to check the new minor-edit summary for both valid and empty sample inputs.
 - Updated the README, architecture notes, and local test notes so this small speed-layer metric is documented for the demo and report.
+- Extended the local speed-layer replay so each active window now also reports top Wikimedia namespace counts.
+- Updated the local benchmark output so each run now includes the final namespace summary beside the wiki, event-type, bot, editor, and minor summaries.
+- Added the `namespace` field to the local sample saver and Kinesis producer payload so the same metric is available in saved samples and AWS ingestion records.
+- Expanded the replay unittest to check the new namespace summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.

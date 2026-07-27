@@ -12,6 +12,7 @@ from typing import Deque
 class WindowEvent:
     observed_at: float
     wiki: str
+    namespace: int
     title: str
     bot: bool
     anonymous: bool
@@ -31,6 +32,11 @@ def top_titles(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
 
 def top_wikis(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
     counts = Counter(event.wiki for event in events)
+    return counts.most_common(limit)
+
+
+def top_namespaces(events: Deque[WindowEvent], limit: int) -> list[tuple[str, int]]:
+    counts = Counter(str(event.namespace) for event in events)
     return counts.most_common(limit)
 
 
@@ -83,6 +89,7 @@ def run_window_replay(
             "events_in_window": len(window),
             "top_titles": top_titles(window, top_n),
             "top_wikis": top_wikis(window, top_n),
+            "top_namespaces": top_namespaces(window, top_n),
             "top_event_types": top_event_types(window, top_n),
             "bot_breakdown": bot_breakdown(window),
             "editor_breakdown": editor_breakdown(window),
@@ -99,14 +106,16 @@ def run_window_replay(
             now = time.time()
             title = record.get("title")
             wiki = record.get("wiki")
+            namespace = record.get("namespace")
             event_type = record.get("type")
-            if not title or not wiki or not event_type:
+            if not title or not wiki or namespace is None or not event_type:
                 continue
 
             window.append(
                 WindowEvent(
                     now,
                     wiki,
+                    int(namespace),
                     title,
                     bool(record.get("bot")),
                     bool(record.get("anon")),
@@ -129,6 +138,7 @@ def run_window_replay(
         "final_window_size": len(window),
         "final_top_titles": top_titles(window, top_n),
         "final_top_wikis": top_wikis(window, top_n),
+        "final_top_namespaces": top_namespaces(window, top_n),
         "final_top_event_types": top_event_types(window, top_n),
         "final_bot_breakdown": bot_breakdown(window),
         "final_editor_breakdown": editor_breakdown(window),

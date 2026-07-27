@@ -30,6 +30,7 @@ def compact_event(event: dict) -> dict:
         "id": event.get("id"),
         "timestamp": event.get("timestamp"),
         "wiki": event.get("wiki"),
+        "namespace": event.get("namespace"),
         "title": event.get("title"),
         "type": event.get("type"),
         "bot": event.get("bot"),
