@@ -43,6 +43,33 @@ Day 1 project setup is complete:
 - Demo video showing live ingestion, batch layer, speed layer, serving view, and benchmark results.
 - Benchmark graphs for throughput, latency, and speedup.
 
+## Main Run Commands
+
+Check AWS resources:
+
+```powershell
+.venv\Scripts\python.exe src/aws/check_resources.py
+```
+
+Send a small live batch to Kinesis:
+
+```powershell
+$env:MAX_RECORDS="200"
+.venv\Scripts\python.exe src/producer/wikimedia_kinesis_producer.py
+```
+
+Read Kinesis records and save them to S3:
+
+```powershell
+.venv\Scripts\python.exe src/aws/kinesis_to_s3_consumer.py --max-records 100 --wait-seconds 120
+```
+
+Run local tests:
+
+```powershell
+.venv\Scripts\python.exe -m unittest discover -s tests
+```
+
 ## Current Batch Outputs
 
 The batch script currently writes four small JSON output folders:
