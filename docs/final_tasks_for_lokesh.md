@@ -1,6 +1,6 @@
 # Final Tasks For Lokesh
 
-These are the remaining human steps before submission.
+These are the remaining human steps before submission. The code prototype and proof notes are ready in the repo.
 
 ## AWS Screenshots
 
@@ -8,8 +8,9 @@ Take screenshots of:
 
 - Kinesis stream details page showing `Active`
 - S3 bucket object list showing raw uploaded files
-- S3 processed folder after Spark batch output
-- EC2 Auto Scaling Group or EMR managed scaling page
+- S3 raw folder showing `raw/live-demo/wikimedia-live-20260727-233528.jsonl`
+- Local terminal output showing the benchmark/test commands
+- Local `data/processed/batch_preview` folders if you want to show batch preview output
 
 ## Report
 
@@ -22,6 +23,7 @@ Add:
 - video link
 - screenshots
 - benchmark table and graph screenshots
+- short note that local PySpark needs Java/JAVA_HOME, so the demo uses the simple batch preview output on Windows
 
 ## Video
 
@@ -35,4 +37,3 @@ Keep the video simple:
 4. run tests
 5. show benchmark output
 6. explain results
-

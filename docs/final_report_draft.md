@@ -40,22 +40,30 @@ The first AWS resources created in Learner Lab were:
 
 The Kinesis stream was configured with on-demand capacity. S3 public access was kept blocked.
 
-A CloudShell check confirmed that the stream and bucket were available. One small demo record was sent into Kinesis, and one JSON-lines file was uploaded to the S3 raw folder as proof that the serving storage path works.
+A CloudShell check confirmed that the stream and bucket were available. One small demo record was sent into Kinesis, and one JSON-lines file was uploaded to the S3 raw folder as first proof that the storage path works.
+
+A stronger live CloudShell run then connected to the Wikimedia recent-change stream, sent 25 live records to Kinesis, and saved the same records to:
+
+```text
+s3://wikimedia-analytics-lokesh-24238856/raw/live-demo/wikimedia-live-20260727-233528.jsonl
+```
 
 ## 6. Performance Plan
 
-The planned measurements are:
+The measurements used in the prototype are:
 
 - throughput: records processed per second
 - latency: time taken by the speed-layer replay
-- speedup: batch job time with different worker counts
-- load change: producer delay changed to simulate slow and fast streams
+- output correctness: speed-layer and serving-layer unit tests
+- batch output shape: local batch preview folders
 
-For the local benchmark, the speed-layer replay reports events per second and average milliseconds per event.
+For the local benchmark, 100 live Wikimedia sample records were replayed three times. The runs processed the sample at about 2187, 50028, and 53766 events per second. The final sample window had 36 bot events, 64 human events, 19 minor edits, and 81 non-minor edits.
+
+The PySpark batch script is included for the main batch layer. On the local Windows machine, PySpark could not start because Java/JAVA_HOME was not available. To still verify the batch output shape for the demo, a small `simple_batch_preview.py` fallback was run on the same 100-record sample and wrote `top_pages`, `language_volume`, `hourly_volume`, and `bot_summary` folders.
 
 ## 7. Critical Analysis
 
-The Lambda architecture is appropriate because this stream needs both fresh and complete analytics. A batch-only design would not answer recent trends quickly. A stream-only design would be fast but weaker for full historical accuracy. The main bottlenecks are likely to be Kinesis read/write rate, Spark startup time for small data, and AWS Learner Lab limits.
+The Lambda architecture is appropriate because this stream needs both fresh and complete analytics. A batch-only design would not answer recent trends quickly. A stream-only design would be fast but weaker for full historical accuracy. The main bottlenecks are likely to be Kinesis read/write rate, Spark startup time for small data, Java/Spark environment setup, and AWS Learner Lab limits.
 
 ## 8. Conclusion
 

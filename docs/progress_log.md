@@ -91,3 +91,8 @@ This log is maintained as daily evidence of steady project progress.
 - Verified the AWS resources again through CloudShell.
 - Sent one demo record into Kinesis and uploaded one demo JSON-lines file into the S3 raw folder.
 - Added CloudShell proof notes and updated the submission checklist with the honest AWS status.
+- Ran a stronger CloudShell demo using live Wikimedia events: 25 real records were sent into Kinesis and saved to S3 under `raw/live-demo/`.
+- Saved a fresh 100-record Wikimedia sample locally for repeatable testing.
+- Ran the local speed-layer benchmark on the 100-record sample and recorded the throughput and latency numbers.
+- Added a simple local batch preview script for machines where Spark cannot start without Java.
+- Ran the local batch preview and confirmed that it writes `top_pages`, `language_volume`, `hourly_volume`, and `bot_summary` outputs.

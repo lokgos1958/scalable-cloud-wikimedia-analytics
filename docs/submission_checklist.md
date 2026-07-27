@@ -18,8 +18,9 @@
 - [x] CloudShell resource check completed
 - [x] One demo record sent to Kinesis
 - [x] One demo JSON-lines file saved to S3
-- [ ] Full Wikimedia producer run with fresh Learner Lab credentials
-- [ ] Kinesis consumer run for a larger live sample
+- [x] Live Wikimedia CloudShell mini-run completed
+- [x] Live Wikimedia records saved to S3
+- [ ] Optional larger Kinesis consumer run
 - [ ] S3 screenshots captured
 - [ ] Spark batch run screenshot captured
 
@@ -29,7 +30,9 @@
 - [x] Architecture notes created
 - [x] AWS setup notes created
 - [x] Performance results template created
+- [x] Performance results filled with local benchmark numbers
 - [x] CloudShell proof notes created
+- [x] Local batch preview completed
 - [ ] IEEE formatting final pass
 - [ ] Benchmark graph screenshots added
 - [ ] Final references checked

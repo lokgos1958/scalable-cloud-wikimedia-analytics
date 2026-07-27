@@ -31,7 +31,8 @@ def save_events(output_file, max_records):
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     saved = 0
-    with requests.get(STREAM_URL, stream=True, timeout=30) as response:
+    headers = {"User-Agent": "nci-scalable-cloud-project-demo"}
+    with requests.get(STREAM_URL, headers=headers, stream=True, timeout=30) as response:
         response.raise_for_status()
 
         with output_path.open("w", encoding="utf-8") as file:

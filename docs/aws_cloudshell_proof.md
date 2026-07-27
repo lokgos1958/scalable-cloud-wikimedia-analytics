@@ -45,7 +45,26 @@ The S3 listing showed:
 2026-07-27 23:26:39 105 wikimedia-demo.jsonl
 ```
 
+## Live Wikimedia CloudShell Run
+
+A stronger live run was also completed from AWS CloudShell.
+
+The script connected to the Wikimedia recent-change event stream, sent 25 live records into Kinesis, and saved the same 25 records to S3.
+
+Kinesis result:
+
+```text
+live_records_sent_to_kinesis 25
+```
+
+S3 result:
+
+```text
+s3://wikimedia-analytics-lokesh-24238856/raw/live-demo/wikimedia-live-20260727-233528.jsonl
+```
+
+The output showed real Wikimedia events from projects such as `eswiktionary`, `commonswiki`, `wikidatawiki`, and `enwiki`.
+
 ## Note
 
-The next stronger demo step is to run the full Wikimedia producer with fresh Learner Lab CLI credentials and then run the Kinesis-to-S3 consumer. The project code for that is already included in the repository.
-
+The next optional step is to run the repository Kinesis-to-S3 consumer for a larger sample. For the current submission prototype, the live CloudShell run proves the Kinesis and S3 path using real Wikimedia events.

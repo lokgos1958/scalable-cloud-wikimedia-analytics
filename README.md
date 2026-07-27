@@ -28,13 +28,15 @@ Wikimedia recent-change events are continuously ingested into AWS, stored for hi
 
 ## Current Status
 
-Day 1 project setup is complete:
+Final prototype work is complete:
 
-- Project scope selected.
-- Public streaming dataset selected.
-- Lambda architecture documented.
-- Starter producer, batch, and speed-layer scripts added.
-- Progress log started for daily professor-visible updates.
+- Public Wikimedia live dataset selected and tested.
+- Kinesis stream and S3 bucket created in AWS Learner Lab.
+- Live Wikimedia records were sent to Kinesis from AWS CloudShell.
+- Live sample records were saved to S3.
+- Local speed-layer benchmark was run on 100 recent-change events.
+- Local batch preview was run on the same 100-event sample.
+- Unit tests cover the speed-layer replay and serving merge logic.
 
 ## Planned Outputs
 
@@ -68,6 +70,18 @@ Run local tests:
 
 ```powershell
 .venv\Scripts\python.exe -m unittest discover -s tests
+```
+
+Run the local batch preview without Java:
+
+```powershell
+.venv\Scripts\python.exe src/batch/simple_batch_preview.py --input data/raw/wikimedia_sample.jsonl --output data/processed/batch_preview
+```
+
+Run the PySpark batch job when Java is available:
+
+```powershell
+.venv\Scripts\python.exe src/batch/spark_batch_views.py --input data/raw/wikimedia_sample.jsonl --output data/processed/batch_test
 ```
 
 ## Current Batch Outputs
