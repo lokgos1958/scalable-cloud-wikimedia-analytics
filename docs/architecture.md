@@ -36,6 +36,7 @@ The speed layer updates recent aggregates over sliding windows:
 - event type mix in the current window
 - bot vs human edit counts in the current window
 - anonymous vs logged-in edit counts in the current window
+- minor vs non-minor edit counts in the current window
 
 ## Serving Merge
 

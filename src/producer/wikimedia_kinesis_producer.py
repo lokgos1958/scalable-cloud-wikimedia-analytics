@@ -33,6 +33,7 @@ def compact_event(event: dict) -> dict:
         "title": event.get("title"),
         "type": event.get("type"),
         "bot": event.get("bot"),
+        "anon": event.get("anon"),
         "minor": event.get("minor"),
         "user": event.get("user"),
         "server_name": event.get("server_name"),
@@ -66,4 +67,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

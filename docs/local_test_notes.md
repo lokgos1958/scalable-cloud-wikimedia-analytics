@@ -32,6 +32,8 @@ The replay output now also includes a small bot vs human split for the active wi
 
 The replay output now also includes a small anonymous vs logged-in split for the active window. This is useful because Wikimedia traffic often changes when IP edits suddenly increase, so it gives one more simple real-time behaviour to discuss in the demo.
 
+The replay output now also includes a small minor vs non-minor split for the active window. This is useful because some windows are mostly small clean-up edits while others are driven by bigger article changes, so it gives another simple real-time pattern to explain.
+
 ## Run A Small Local Benchmark
 
 ```powershell
@@ -48,6 +50,7 @@ This replays the same sample file a few times and prints:
 - final top event-type counts in the active window
 - final bot vs human counts in the active window
 - final anonymous vs logged-in counts in the active window
+- final minor vs non-minor counts in the active window
 
 These numbers are only local baseline measurements, but they are useful later when comparing local replay against AWS-based runs.
 
@@ -83,7 +86,7 @@ This checks that the replay logic:
 It is a lightweight local check, but it helps show that the speed-layer replay code still behaves as expected after small edits.
 
 The same test command now also checks that the serving-layer merge keeps batch counts, speed counts, and combined counts aligned for the same page.
-It also checks that the speed-layer replay keeps the event-type counts, the bot vs human counts, and the anonymous vs logged-in counts correct for a small sample window.
+It also checks that the speed-layer replay keeps the event-type counts, the bot vs human counts, the anonymous vs logged-in counts, and the minor vs non-minor counts correct for a small sample window.
 
 ## Why This Step Matters
 

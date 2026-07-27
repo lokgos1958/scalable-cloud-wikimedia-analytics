@@ -18,6 +18,8 @@ def clean_event(event):
         "title": event.get("title"),
         "type": event.get("type"),
         "bot": event.get("bot"),
+        "anon": event.get("anon"),
+        "minor": event.get("minor"),
         "user": event.get("user"),
         "server_name": event.get("server_name"),
     }
@@ -60,4 +62,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

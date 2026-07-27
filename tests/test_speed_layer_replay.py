@@ -22,8 +22,15 @@ class RunWindowReplayTests(unittest.TestCase):
         input_path = self.write_sample_file(
             [
                 {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": False, "anon": False, "type": "edit"},
-                {"wiki": "enwiki", "title": "Python_(programming_language)", "bot": True, "anon": True, "type": "edit"},
-                {"wiki": "dewiki", "title": "Berlin", "bot": False, "anon": True, "type": "new"},
+                {
+                    "wiki": "enwiki",
+                    "title": "Python_(programming_language)",
+                    "bot": True,
+                    "anon": True,
+                    "minor": True,
+                    "type": "edit",
+                },
+                {"wiki": "dewiki", "title": "Berlin", "bot": False, "anon": True, "minor": False, "type": "new"},
                 {"wiki": "enwiki"},
             ]
         )
@@ -47,6 +54,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["final_top_event_types"], [("edit", 2), ("new", 1)])
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 1, "human_events": 2})
         self.assertEqual(summary["final_editor_breakdown"], {"anonymous_events": 2, "logged_in_events": 1})
+        self.assertEqual(summary["final_minor_breakdown"], {"minor_events": 1, "non_minor_events": 2})
 
     def test_replay_handles_files_without_valid_events(self):
         input_path = self.write_sample_file(
@@ -72,6 +80,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["final_top_event_types"], [])
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 0, "human_events": 0})
         self.assertEqual(summary["final_editor_breakdown"], {"anonymous_events": 0, "logged_in_events": 0})
+        self.assertEqual(summary["final_minor_breakdown"], {"minor_events": 0, "non_minor_events": 0})
 
 
 if __name__ == "__main__":

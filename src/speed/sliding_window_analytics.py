@@ -15,6 +15,7 @@ class WindowEvent:
     title: str
     bot: bool
     anonymous: bool
+    minor: bool
     event_type: str
 
 
@@ -54,6 +55,14 @@ def editor_breakdown(events: Deque[WindowEvent]) -> dict[str, int]:
     }
 
 
+def minor_breakdown(events: Deque[WindowEvent]) -> dict[str, int]:
+    minor_events = sum(1 for event in events if event.minor)
+    return {
+        "minor_events": minor_events,
+        "non_minor_events": len(events) - minor_events,
+    }
+
+
 def run_window_replay(
     input_path: str,
     window_seconds: int,
@@ -77,6 +86,7 @@ def run_window_replay(
             "top_event_types": top_event_types(window, top_n),
             "bot_breakdown": bot_breakdown(window),
             "editor_breakdown": editor_breakdown(window),
+            "minor_breakdown": minor_breakdown(window),
         }
         if emit_progress:
             print(json.dumps(snapshot))
@@ -100,6 +110,7 @@ def run_window_replay(
                     title,
                     bool(record.get("bot")),
                     bool(record.get("anon")),
+                    bool(record.get("minor")),
                     event_type,
                 )
             )
@@ -121,6 +132,7 @@ def run_window_replay(
         "final_top_event_types": top_event_types(window, top_n),
         "final_bot_breakdown": bot_breakdown(window),
         "final_editor_breakdown": editor_breakdown(window),
+        "final_minor_breakdown": minor_breakdown(window),
     }
 
 

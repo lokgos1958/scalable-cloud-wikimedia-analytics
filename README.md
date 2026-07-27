@@ -61,3 +61,4 @@ The local speed-layer replay currently reports:
 - top event types in the active window
 - bot vs human event counts in the active window
 - anonymous vs logged-in edit counts in the active window
+- minor vs non-minor edit counts in the active window
