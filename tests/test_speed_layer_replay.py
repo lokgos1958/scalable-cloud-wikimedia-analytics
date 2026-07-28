@@ -25,6 +25,7 @@ class RunWindowReplayTests(unittest.TestCase):
                     "wiki": "enwiki",
                     "namespace": 0,
                     "title": "Python_(programming_language)",
+                    "user": "Alice",
                     "bot": False,
                     "anon": False,
                     "type": "edit",
@@ -33,12 +34,22 @@ class RunWindowReplayTests(unittest.TestCase):
                     "wiki": "enwiki",
                     "namespace": 0,
                     "title": "Python_(programming_language)",
+                    "user": "Alice",
                     "bot": True,
                     "anon": True,
                     "minor": True,
                     "type": "edit",
                 },
-                {"wiki": "dewiki", "namespace": 0, "title": "Berlin", "bot": False, "anon": True, "minor": False, "type": "new"},
+                {
+                    "wiki": "dewiki",
+                    "namespace": 0,
+                    "title": "Berlin",
+                    "user": "203.0.113.10",
+                    "bot": False,
+                    "anon": True,
+                    "minor": False,
+                    "type": "new",
+                },
                 {"wiki": "enwiki"},
             ]
         )
@@ -64,6 +75,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 1, "human_events": 2})
         self.assertEqual(summary["final_editor_breakdown"], {"anonymous_events": 2, "logged_in_events": 1})
         self.assertEqual(summary["final_minor_breakdown"], {"minor_events": 1, "non_minor_events": 2})
+        self.assertEqual(summary["final_editor_activity_summary"], {"unique_editors": 2, "repeat_editors": 1})
 
     def test_replay_handles_files_without_valid_events(self):
         input_path = self.write_sample_file(
@@ -91,6 +103,7 @@ class RunWindowReplayTests(unittest.TestCase):
         self.assertEqual(summary["final_bot_breakdown"], {"bot_events": 0, "human_events": 0})
         self.assertEqual(summary["final_editor_breakdown"], {"anonymous_events": 0, "logged_in_events": 0})
         self.assertEqual(summary["final_minor_breakdown"], {"minor_events": 0, "non_minor_events": 0})
+        self.assertEqual(summary["final_editor_activity_summary"], {"unique_editors": 0, "repeat_editors": 0})
 
 
 if __name__ == "__main__":

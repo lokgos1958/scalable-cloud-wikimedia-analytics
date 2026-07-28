@@ -14,6 +14,7 @@ class WindowEvent:
     wiki: str
     namespace: int
     title: str
+    user: str
     bot: bool
     anonymous: bool
     minor: bool
@@ -69,6 +70,15 @@ def minor_breakdown(events: Deque[WindowEvent]) -> dict[str, int]:
     }
 
 
+def editor_activity_summary(events: Deque[WindowEvent]) -> dict[str, int]:
+    counts = Counter(event.user for event in events if event.user)
+    repeat_editors = sum(1 for total in counts.values() if total > 1)
+    return {
+        "unique_editors": len(counts),
+        "repeat_editors": repeat_editors,
+    }
+
+
 def run_window_replay(
     input_path: str,
     window_seconds: int,
@@ -94,6 +104,7 @@ def run_window_replay(
             "bot_breakdown": bot_breakdown(window),
             "editor_breakdown": editor_breakdown(window),
             "minor_breakdown": minor_breakdown(window),
+            "editor_activity_summary": editor_activity_summary(window),
         }
         if emit_progress:
             print(json.dumps(snapshot))
@@ -117,6 +128,7 @@ def run_window_replay(
                     wiki,
                     int(namespace),
                     title,
+                    str(record.get("user") or ""),
                     bool(record.get("bot")),
                     bool(record.get("anon")),
                     bool(record.get("minor")),
@@ -143,6 +155,7 @@ def run_window_replay(
         "final_bot_breakdown": bot_breakdown(window),
         "final_editor_breakdown": editor_breakdown(window),
         "final_minor_breakdown": minor_breakdown(window),
+        "final_editor_activity_summary": editor_activity_summary(window),
     }
 
 

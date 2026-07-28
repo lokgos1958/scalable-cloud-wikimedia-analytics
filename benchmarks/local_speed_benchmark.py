@@ -37,6 +37,7 @@ def benchmark_speed_layer(input_path: str, window_seconds: int, top_n: int, runs
                 "final_bot_breakdown": summary["final_bot_breakdown"],
                 "final_editor_breakdown": summary["final_editor_breakdown"],
                 "final_minor_breakdown": summary["final_minor_breakdown"],
+                "final_editor_activity_summary": summary["final_editor_activity_summary"],
             }
         )
 
