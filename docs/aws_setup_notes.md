@@ -54,4 +54,17 @@ Region: us-east-1
 Public access: blocked
 ```
 
-The next AWS step is to send a small number of Wikimedia events into the Kinesis stream and save raw output files into S3.
+Additional scaling evidence created on 2026-07-29:
+
+```text
+Launch template: wikimedia-analytics-lt
+Auto Scaling Group: wikimedia-analytics-asg
+Minimum capacity: 0
+Maximum capacity: 2
+Desired capacity during demo: 0
+Scaling policy: wikimedia-cpu-target-60
+Metric: ASGAverageCPUUtilization
+Target: 60%
+```
+
+The desired capacity was kept at `0` so the report can show the scaling boundary and policy without leaving unnecessary EC2 instances running in Learner Lab.

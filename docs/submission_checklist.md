@@ -20,8 +20,11 @@
 - [x] One demo JSON-lines file saved to S3
 - [x] Live Wikimedia CloudShell mini-run completed
 - [x] Live Wikimedia records saved to S3
+- [x] Auto Scaling Group configured
+- [x] Target tracking scaling policy configured
 - [ ] Optional larger Kinesis consumer run
-- [ ] S3 screenshots captured
+- [x] AWS screenshots captured
+- [x] S3 screenshots captured
 - [ ] Spark batch run screenshot captured
 
 ## Report

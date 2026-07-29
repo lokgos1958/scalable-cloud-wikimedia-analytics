@@ -48,6 +48,8 @@ A stronger live CloudShell run then connected to the Wikimedia recent-change str
 s3://wikimedia-analytics-lokesh-24238856/raw/live-demo/wikimedia-live-20260727-233528.jsonl
 ```
 
+For the auto-scaling requirement, an EC2 Auto Scaling Group named `wikimedia-analytics-asg` was configured with launch template `wikimedia-analytics-lt`. The group has minimum capacity `0`, maximum capacity `2`, and a target tracking policy named `wikimedia-cpu-target-60` using `ASGAverageCPUUtilization` with a target value of `60`. Desired capacity was kept at `0` during evidence capture to avoid running unnecessary EC2 instances in Learner Lab.
+
 ## 6. Performance Plan
 
 The measurements used in the prototype are:

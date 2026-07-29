@@ -48,3 +48,17 @@ The serving layer combines:
 - fresh recent results from the speed view
 
 This gives both correctness and low latency, which is the purpose of the Lambda architecture.
+
+## Auto Scaling Boundary
+
+The AWS scaling boundary is shown with an EC2 Auto Scaling Group:
+
+```text
+Auto Scaling Group: wikimedia-analytics-asg
+Launch template: wikimedia-analytics-lt
+Min size: 0
+Max size: 2
+Target tracking policy: ASGAverageCPUUtilization at 60%
+```
+
+In a fuller deployment, EC2 workers or Spark workers would run the producer, batch processing, or speed processing under this boundary. For the Learner Lab demo, desired capacity is kept at `0` to avoid unnecessary EC2 usage while still showing the configured scaling policy.
