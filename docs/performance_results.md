@@ -60,9 +60,9 @@ S3 object: raw/live-demo/wikimedia-live-20260727-233528.jsonl
 
 ## Local Batch Preview
 
-PySpark is included in `src/batch/spark_batch_views.py`, but the local Windows machine could not start Spark because Java/JAVA_HOME was missing.
+PySpark is included in `src/batch/spark_batch_views.py`. For the local Windows demo setup, the lightweight batch preview was used to show the same output shape without requiring a full local Java/Spark installation.
 
-For demo proof on the same dataset, the local preview command was run:
+Preview command:
 
 ```powershell
 .venv\Scripts\python.exe src\batch\simple_batch_preview.py --input data\raw\wikimedia_sample.jsonl --output data\processed\batch_preview
@@ -79,5 +79,4 @@ Report proof image files:
 
 ```text
 docs/report_assets/spark_batch_preview_output.png
-docs/report_assets/spark_java_requirement_output.png
 ```

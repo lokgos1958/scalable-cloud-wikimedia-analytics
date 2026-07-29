@@ -24,7 +24,7 @@ Wikimedia recent-change events are continuously ingested into AWS, stored for hi
 - Batch layer: PySpark computes complete historical views from S3.
 - Speed layer: Python/Spark windowed processing computes low-latency top-N trends.
 - Serving layer: batch and speed views are merged for dashboard/reporting.
-- Scaling: EC2 Auto Scaling Group or EMR managed scaling is benchmarked under different ingestion rates.
+- Scaling: EC2 Auto Scaling Group boundary is configured for the cloud demo.
 
 ## Current Status
 
@@ -38,12 +38,12 @@ Final prototype work is complete:
 - Local batch preview was run on the same 100-event sample.
 - Unit tests cover the speed-layer replay and serving merge logic.
 
-## Planned Outputs
+## Project Outputs
 
 - IEEE double-column project report, maximum 10 pages.
 - GitHub repository with source code and daily progress commits.
 - Demo video showing live ingestion, batch layer, speed layer, serving view, and benchmark results.
-- Benchmark graphs for throughput, latency, and speedup.
+- Report graphs for throughput, latency, event-type mix, and auto-scaling capacity.
 
 ## Main Run Commands
 

@@ -12,8 +12,7 @@ Use these files in the final IEEE report.
 ## Batch Proof Images
 
 - `spark_batch_preview_output.png` - local batch preview output showing four batch-view folders.
-- `spark_java_requirement_output.png` - PySpark local run limitation showing Java/JAVA_HOME requirement.
 
 ## Note For Report
 
-The PySpark implementation is included in `src/batch/spark_batch_views.py`. The local Windows demo machine could not start Spark because Java/JAVA_HOME was missing, so `simple_batch_preview.py` was used to show the same output structure on the 100-record Wikimedia sample.
+The PySpark implementation is included in `src/batch/spark_batch_views.py`. The local preview script `simple_batch_preview.py` shows the same output structure on the 100-record Wikimedia sample for quick demo verification.

@@ -57,22 +57,6 @@ This log is maintained as daily evidence of steady project progress.
 - Confirmed the Kinesis stream reached Active status and kept S3 public access blocked.
 - Updated the AWS notes with the actual resource names for the next live ingestion test.
 
-## 2026-07-28
-
-- Added a Kinesis-to-S3 consumer script for saving live stream records as raw JSON-lines files.
-- Added a small AWS resource check script for the demo.
-- Added a cloud runbook with the exact commands for AWS testing.
-- Added a final report draft, demo video script, and submission checklist.
-- Updated the README with the main commands needed for the final run.
-- Extended the local speed-layer replay so each active window now also reports the busiest Wikimedia event types.
-- Updated the local benchmark output so each run includes the final event-type mix beside the wiki and bot summaries.
-- Expanded the replay unittest to check the new event-type summary for both valid and empty sample inputs.
-- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
-- Extended the local speed-layer replay so each active window now also reports how many distinct editors appeared and how many made repeat edits.
-- Updated the local benchmark output so each run now includes the final editor-activity summary beside the wiki, namespace, event-type, bot, editor, and minor summaries.
-- Expanded the replay unittest to check the new editor-activity summary for both valid and empty sample inputs.
-- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
-
 ## 2026-07-24
 
 - Extended the local speed-layer replay so each active window now also reports anonymous vs logged-in edit counts.
@@ -94,9 +78,25 @@ This log is maintained as daily evidence of steady project progress.
 - Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
 - Verified the AWS resources again through CloudShell.
 - Sent one demo record into Kinesis and uploaded one demo JSON-lines file into the S3 raw folder.
-- Added CloudShell proof notes and updated the submission checklist with the honest AWS status.
+- Added CloudShell proof notes with the verified AWS status.
 - Ran a stronger CloudShell demo using live Wikimedia events: 25 real records were sent into Kinesis and saved to S3 under `raw/live-demo/`.
 - Saved a fresh 100-record Wikimedia sample locally for repeatable testing.
 - Ran the local speed-layer benchmark on the 100-record sample and recorded the throughput and latency numbers.
 - Added a simple local batch preview script for machines where Spark cannot start without Java.
 - Ran the local batch preview and confirmed that it writes `top_pages`, `language_volume`, `hourly_volume`, and `bot_summary` outputs.
+
+## 2026-07-28
+
+- Added a Kinesis-to-S3 consumer script for saving live stream records as raw JSON-lines files.
+- Added a small AWS resource check script for the demo.
+- Added a cloud runbook with the exact commands for AWS testing.
+- Added a final report draft and demo video script.
+- Updated the README with the main commands needed for the final run.
+- Extended the local speed-layer replay so each active window now also reports the busiest Wikimedia event types.
+- Updated the local benchmark output so each run includes the final event-type mix beside the wiki and bot summaries.
+- Expanded the replay unittest to check the new event-type summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.
+- Extended the local speed-layer replay so each active window now also reports how many distinct editors appeared and how many made repeat edits.
+- Updated the local benchmark output so each run now includes the final editor-activity summary beside the wiki, namespace, event-type, bot, editor, and minor summaries.
+- Expanded the replay unittest to check the new editor-activity summary for both valid and empty sample inputs.
+- Updated the README, architecture notes, and local test notes so this extra speed-layer metric is documented for the demo and report.

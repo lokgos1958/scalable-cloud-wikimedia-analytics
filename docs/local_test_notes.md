@@ -77,7 +77,7 @@ This should create small output folders for:
 
 This is still only a local smoke test, but it helps confirm that the batch script now produces both daily and hourly views before moving the same job to S3 input in AWS.
 
-PySpark also needs Java. If Java/JAVA_HOME is missing on Windows, use the small local preview script for the demo output shape:
+PySpark also needs Java. If Java is not configured on Windows, use the small local preview script for the demo output shape:
 
 ```powershell
 python src/batch/simple_batch_preview.py --input data/raw/wikimedia_sample.jsonl --output data/processed/batch_preview

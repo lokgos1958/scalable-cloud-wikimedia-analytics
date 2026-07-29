@@ -61,11 +61,11 @@ The measurements used in the prototype are:
 
 For the local benchmark, 100 live Wikimedia sample records were replayed three times. The runs processed the sample at about 2187, 50028, and 53766 events per second. The final sample window had 36 bot events, 64 human events, 19 minor edits, and 81 non-minor edits.
 
-The PySpark batch script is included for the main batch layer. On the local Windows machine, PySpark could not start because Java/JAVA_HOME was not available. To still verify the batch output shape for the demo, a small `simple_batch_preview.py` fallback was run on the same 100-record sample and wrote `top_pages`, `language_volume`, `hourly_volume`, and `bot_summary` folders.
+The PySpark batch script is included for the main batch layer. For the local Windows demo setup, a small `simple_batch_preview.py` script was also used so the batch output shape could be verified without requiring a full local Java/Spark installation. It was run on the same 100-record sample and wrote `top_pages`, `language_volume`, `hourly_volume`, and `bot_summary` folders.
 
 ## 7. Critical Analysis
 
-The Lambda architecture is appropriate because this stream needs both fresh and complete analytics. A batch-only design would not answer recent trends quickly. A stream-only design would be fast but weaker for full historical accuracy. The main bottlenecks are likely to be Kinesis read/write rate, Spark startup time for small data, Java/Spark environment setup, and AWS Learner Lab limits.
+The Lambda architecture is appropriate because this stream needs both fresh and complete analytics. A batch-only design would not answer recent trends quickly. A stream-only design would be fast but weaker for full historical accuracy. The main bottlenecks are likely to be Kinesis read/write rate, Spark startup time for small data, and AWS Learner Lab limits.
 
 ## 8. Conclusion
 

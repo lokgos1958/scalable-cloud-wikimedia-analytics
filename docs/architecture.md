@@ -11,7 +11,7 @@ flowchart LR
     F --> H["Recent Window View"]
     G --> I["Serving Layer Merge"]
     H --> I
-    I --> J["Athena / Dashboard / Report Outputs"]
+    I --> J["Report Outputs"]
     K["EC2 Auto Scaling or EMR Managed Scaling"] --> E
     K --> F
 ```
