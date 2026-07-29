@@ -21,9 +21,9 @@ $env:PYTHONPATH='.'
 
 | Run | Events | Duration seconds | Events per second | Avg ms per event |
 | --- | ---: | ---: | ---: | ---: |
-| 1 | 100 | 0.0457 | 2187.21 | 0.4572 |
-| 2 | 100 | 0.0020 | 50027.52 | 0.0200 |
-| 3 | 100 | 0.0019 | 53766.34 | 0.0186 |
+| 1 | 100 | 0.0197 | 5085.41 | 0.1966 |
+| 2 | 100 | 0.0030 | 33148.80 | 0.0302 |
+| 3 | 100 | 0.0026 | 38381.83 | 0.0261 |
 
 Final sample summary:
 
@@ -36,6 +36,17 @@ Final sample summary:
 - logged-in events: 100
 - minor events: 19
 - non-minor events: 81
+- unique editors: 40
+- repeat editors: 15
+
+Report graph files:
+
+```text
+docs/report_assets/graph_speed_throughput.png
+docs/report_assets/graph_speed_latency.png
+docs/report_assets/graph_event_type_mix.png
+docs/report_assets/graph_autoscaling_capacity.png
+```
 
 ## Cloud Ingestion Proof
 
@@ -62,4 +73,11 @@ Output:
 ```text
 events_read=100
 views_written=top_pages,language_volume,hourly_volume,bot_summary
+```
+
+Report proof image files:
+
+```text
+docs/report_assets/spark_batch_preview_output.png
+docs/report_assets/spark_java_requirement_output.png
 ```

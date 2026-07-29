@@ -22,7 +22,8 @@ Add:
 - GitHub repository link
 - video link
 - screenshots
-- benchmark table and graph screenshots
+- benchmark table and graph images from `docs/report_assets`
+- batch preview proof image from `docs/report_assets/spark_batch_preview_output.png`
 - short note that local PySpark needs Java/JAVA_HOME, so the demo uses the simple batch preview output on Windows
 
 ## Video

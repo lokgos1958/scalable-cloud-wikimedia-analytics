@@ -37,7 +37,8 @@
 - [x] CloudShell proof notes created
 - [x] Local batch preview completed
 - [ ] IEEE formatting final pass
-- [ ] Benchmark graph screenshots added
+- [x] Benchmark graph images created
+- [x] Batch preview screenshot created
 - [ ] Final references checked
 
 ## Video
